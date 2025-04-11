@@ -101,8 +101,9 @@ if prompt := st.chat_input("What do you want to know?"):
     
     # Generate AI response
     ai_response = engine(prompt)
-    if ai_response:
-        st.session_state.emotion = extract_emotion(ai_response)
+    
+    st.session_state.emotion = extract_emotion(ai_response)
+    st.label(extract_emotion(ai_response)
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": ai_response})
     
@@ -114,6 +115,7 @@ with cols[0]:
 with cols[1]:
 # Display chat messages from history
     with st.container(border=True):
+        st.write(st.session_state.emotion)
         for message in st.session_state.messages:
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
