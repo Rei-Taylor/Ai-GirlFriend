@@ -47,7 +47,7 @@ async def text_to_speech(text):
     import re
     cleaned_text = clean_text_for_speech(text)
     clean_response = re.sub(r'\(.*?\)', '', cleaned_text).strip()
-    communicate = edge_tts.Communicate(cleaned_response, 'zh-CN-XiaoyiNeural')
+    communicate = edge_tts.Communicate(clean_response, 'zh-CN-XiaoyiNeural')
     with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as fp:
         temp_filename = fp.name
         await communicate.save(temp_filename)
