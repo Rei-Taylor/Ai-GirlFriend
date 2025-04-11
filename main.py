@@ -128,4 +128,5 @@ with cols[1]:
                     st.audio(audio_file, format='audio/mp3')
                     # Clean up temporary audio file
                     os.unlink(audio_file)
+                    st.rerun()
 
