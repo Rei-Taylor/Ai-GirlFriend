@@ -6,6 +6,8 @@ from google import genai
 import os
 import tempfile
 
+
+st.set_page_config(layout="wide")
 # Initialize session state variables
 if "messages" not in st.session_state:
     st.session_state.messages = []
