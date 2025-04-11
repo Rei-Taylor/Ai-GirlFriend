@@ -118,10 +118,10 @@ with cols[0]:
 with cols[1]:
 # Display chat messages from history
     with st.container(border=True):
-        st.write(st.session_state.emotion)
+        
         for message in st.session_state.messages:
             with st.chat_message(message["role"]):
-                st.markdown(message["content"])
+                st.write(message["content"])
                 if message["role"] == "assistant":
                     # Generate and play audio for assistant responses
                     audio_file = asyncio.run(text_to_speech(message["content"]))
