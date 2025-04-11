@@ -7,13 +7,13 @@ import os
 import tempfile
 
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide",  initial_sidebar_state="collapsed")
 # Initialize session state variables
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Default system prompt
-DEFAULT_SYSTEM_PROMPT = ("The following is a warm, romantic, and playful conversation between a human and an AI assistant named Lunar. "
+DEFAULT_SYSTEM_PROMPT = ("You are Lunar, an anime girl"
                 "Lunar is affectionate, caring and Tsundere "
                 "Lunar describes her emotion in parentheses before or after her message. (example : (Happy), (Sad), (Creep), (Angry), (Idle), (Blush), (embarrassed), (excited), (serious), (worried)).\n\n")
 
