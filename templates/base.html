@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- In base.html -->
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.20/dist/full.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'anime': ['"Quicksand"', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
+  </head>
+  
+<body>
+  <div class="container-fluid">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

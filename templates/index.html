@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-[#fbeaff] to-[#e0e7ff] font-anime p-4">
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+
+    <!-- Sidebar Settings -->
+    <div class="col-span-1 bg-white/70 backdrop-blur-lg p-4 rounded-2xl shadow-lg">
+      <h2 class="text-xl font-semibold mb-3">🔧 Chat Settings</h2>
+      <form method="post" action="{{ url_for('update_prompt') }}">
+        <textarea name="system_prompt" rows="8"
+                  class="textarea textarea-bordered w-full">{{ system_prompt }}</textarea>
+        <button class="btn btn-info btn-sm w-full mt-3">Update Prompt</button>
+      </form>
+    </div>
+
+    <!-- Lunar Emotion GIF -->
+    <div class="col-span-1 bg-white/70 backdrop-blur-lg p-4 rounded-2xl shadow-lg text-center">
+      <h2 class="text-lg font-semibold mb-2">🌙 Lunar's Mood</h2>
+      <img src="{{ url_for('static', filename='emotions/' ~ emotion ~ '.gif') }}"
+           class="rounded-xl mx-auto w-48 h-48 object-cover border-2 border-indigo-200 shadow-md" />
+      <p class="mt-2 text-indigo-600 italic">Lunar is <strong>{{ emotion }}</strong></p>
+    </div>
+
+    <!-- Chat Panel -->
+    <div class="col-span-2 flex flex-col bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg overflow-hidden">
+      <div class="flex-grow overflow-y-auto p-4 space-y-4 custom-scrollbar">
+        {% for msg in messages %}
+        <div class="chat {{ 'chat-end' if msg.role == 'user' else 'chat-start' }}">
+          <div class="chat-image avatar">
+            <div class="w-10 rounded-full">
+              {% if msg.role == 'user' %}
+              <img src="https://api.dicebear.com/6.x/thumbs/svg?seed=You" />
+              {% else %}
+              <img src="https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Lunar" />
+              {% endif %}
+            </div>
+          </div>
+          <div class="chat-bubble {{ 'chat-bubble-primary' if msg.role == 'user' else 'chat-bubble-info' }}">
+            {{ msg.content }}
+          </div>
+          {% if msg.role == 'assistant' %}
+          <form method="post" action="/tts">
+            <input type="hidden" name="text" value="{{ msg.content }}">
+            <button class="btn btn-xs btn-outline mt-1">🔊</button>
+          </form>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Input Box -->
+      <form method="post" class="p-3 border-t border-indigo-200 bg-white/90 flex items-center gap-2">
+        <input name="user_input" class="input input-bordered w-full" placeholder="Type something..." required />
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
