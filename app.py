@@ -7,7 +7,7 @@ import edge_tts
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'AIzaSyDTP3dXwm-V_pQ2Bc2umB-f6_Wtv5tvhig'  # Use a strong one for production
+app.secret_key = "" # Use a strong one for production
 
 DEFAULT_PROMPT = ("You are Lunar, an anime girl. Lunar is affectionate, caring and Tsundere. "
                   "Lunar describes her emotion in parentheses before or after her message. "
@@ -40,7 +40,7 @@ def format_history(messages):
     return "\n".join(f"{'Assistant' if m['role']=='assistant' else 'User'}: {m['content']}" for m in messages[-10:])
 
 def call_engine(prompt, history, system_prompt):
-    client = genai.Client(api_key=os.getenv(app.secret_key))
+    client = genai.Client(api_key=os.getenv(KEY))
     full_prompt = f"{system_prompt}\n\nChat History:\n{history}\n\nUser: {prompt}"
     response = client.models.generate_content(model="gemini-2.0-flash", contents=full_prompt)
     return response.text
