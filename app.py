@@ -40,7 +40,7 @@ def format_history(messages):
     return "\n".join(f"{'Assistant' if m['role']=='assistant' else 'User'}: {m['content']}" for m in messages[-10:])
 
 def call_engine(prompt, history, system_prompt):
-    client = genai.Client(api_key=os.getenv(KEY))
+    client = genai.Client(api_key=os.getenv("KEY"))
     full_prompt = f"{system_prompt}\n\nChat History:\n{history}\n\nUser: {prompt}"
     response = client.models.generate_content(model="gemini-2.0-flash", contents=full_prompt)
     return response.text
