@@ -7,6 +7,7 @@ import edge_tts
 load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 
 DEFAULT_PROMPT = ("You are Lunar, an anime girl. Lunar is affectionate, caring and Tsundere. "
