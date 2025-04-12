@@ -24,6 +24,7 @@ st.markdown(
 }
 .st-key-ctn {
      max-height : 500px;
+     overflow : scroll;
 }
 </style>
 """, unsafe_allow_html = True
