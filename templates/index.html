@@ -4,14 +4,25 @@
   <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
 
     <!-- Sidebar Settings -->
-    <div class="col-span-1 bg-white/70 backdrop-blur-lg p-4 rounded-2xl shadow-lg">
-      <h2 class="text-xl font-semibold mb-3">🔧 Chat Settings</h2>
-      <form method="post" action="{{ url_for('update_prompt') }}">
-        <textarea name="system_prompt" rows="8"
-                  class="textarea textarea-bordered w-full">{{ system_prompt }}</textarea>
-        <button class="btn btn-info btn-sm w-full mt-3">Update Prompt</button>
-      </form>
-    </div>
+    <!-- Floating settings button -->
+    <button class="btn btn-sm btn-outline absolute bottom-4 left-4 z-50" onclick="document.getElementById('settings_modal').showModal()">⚙️ Settings</button>
+
+    <!-- Settings Modal -->
+    <dialog id="settings_modal" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box bg-white/90 backdrop-blur-lg rounded-xl shadow-xl">
+        <h3 class="font-bold text-lg">Chat Settings</h3>
+        <form method="post" action="{{ url_for('update_prompt') }}">
+          <textarea name="system_prompt" rows="6" class="textarea textarea-bordered w-full mt-2">{{ system_prompt }}</textarea>
+          <div class="modal-action">
+            <button class="btn btn-info">Update</button>
+            <form method="dialog">
+              <button class="btn">Cancel</button>
+            </form>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
 
     <!-- Lunar Emotion GIF -->
     <div class="col-span-1 bg-white/70 backdrop-blur-lg p-4 rounded-2xl shadow-lg text-center">
