@@ -7,7 +7,7 @@ import edge_tts
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = "" # Use a strong one for production
+
 
 DEFAULT_PROMPT = ("You are Lunar, an anime girl. Lunar is affectionate, caring and Tsundere. "
                   "Lunar describes her emotion in parentheses before or after her message. "
