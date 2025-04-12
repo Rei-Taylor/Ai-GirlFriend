@@ -150,6 +150,13 @@ with cols[1]:
             else:
                 with st.chat_message(message["role"]):
                     st.write(message["content"])
+
+            if message["role"] == "assistant":
+                        # Generate and play audio for assistant responses
+                        audio_file = asyncio.run(text_to_speech(message["content"]))
+                        st.audio(audio_file, format='audio/mp3')
+                        # Clean up temporary audio file
+                        os.unlink(audio_file)
                     
                         
 
