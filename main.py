@@ -12,6 +12,20 @@ st.set_page_config(layout="wide",  initial_sidebar_state="collapsed")
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+st.markdown(
+    """
+<style>
+.st-emotion-cache-4oy321{
+    background-color : #68C4EA;
+    border-radius : 10px;
+}
+.st-emotion-cache-4oy321:hover{
+    background-color : #959BF1;
+}
+</style>
+""", unsafe_allow_html = True
+)
+
 # Default system prompt
 DEFAULT_SYSTEM_PROMPT = ("You are Lunar, an anime girl"
                 "Lunar is affectionate, caring and Tsundere "
@@ -117,7 +131,7 @@ with cols[0]:
         
 with cols[1]:
 # Display chat messages from history
-    with st.container(border=True):
+    with st.container(border=True, key="ctn"):
         
         for message in st.session_state.messages:
             with st.chat_message(message["role"]):
