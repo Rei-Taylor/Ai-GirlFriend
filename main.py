@@ -22,6 +22,9 @@ st.markdown(
 .st-emotion-cache-4oy321:hover{
     background-color : #959BF1;
 }
+.st-key-ctn {
+     max-height : 500px;
+}
 </style>
 """, unsafe_allow_html = True
 )
