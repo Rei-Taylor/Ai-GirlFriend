@@ -138,13 +138,17 @@ with cols[1]:
     with st.container(border=True, key="ctn"):
         
         for message in st.session_state.messages:
-            with st.chat_message(message["role"]):
-                st.write(message["content"])
-                if message["role"] == "assistant":
-                    # Generate and play audio for assistant responses
-                    audio_file = asyncio.run(text_to_speech(message["content"]))
-                    st.audio(audio_file, format='audio/mp3')
-                    # Clean up temporary audio file
-                    os.unlink(audio_file)
-                    
+            if message["role"] == "assistant":
+                with st.chat_message(message["role"], avatar="lunar.ico"):
+                    st.write(message["content"])
+            else:
+                with st.chat_message(message["role"]):
+                    st.write(message["content"]
+                    if message["role"] == "assistant":
+                        # Generate and play audio for assistant responses
+                        audio_file = asyncio.run(text_to_speech(message["content"]))
+                        st.audio(audio_file, format='audio/mp3')
+                        # Clean up temporary audio file
+                        os.unlink(audio_file)
+                        
 
