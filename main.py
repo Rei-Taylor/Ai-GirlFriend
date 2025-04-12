@@ -7,7 +7,7 @@ import os
 import tempfile
 
 
-st.set_page_config(layout="wide",  initial_sidebar_state="collapsed", icon="lunar.ico")
+st.set_page_config(layout="wide",  initial_sidebar_state="collapsed", page_icon="lunar.ico")
 # Initialize session state variables
 if "messages" not in st.session_state:
     st.session_state.messages = []
